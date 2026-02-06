@@ -70,8 +70,31 @@ jobs:
         run: echo "calidad"
   
   deploy:
-    needs: qa
     runs-on: ubuntu-latest
+    needs: qa
+    if: github.ref=='refs/heads/master'
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+  
     steps:
-      - name: despliegue
-        run: echo "despliegue"
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: moviecards-java
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_589B8D33718D4CACBD94F8A8D2A4C4CA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_98787287B7054C6E99105F6BE5834526 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6DB0D990A30441D9AF868EC46149C170 }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'moviecards-Albert-Calugar'
+          slot-name: 'Production'
+          package: '*.jar'
+          
