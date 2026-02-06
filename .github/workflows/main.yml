@@ -8,13 +8,13 @@ jobs:
   
     steps:
     - name: Descargar repositorio
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Instalar JDK 11
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       with:
         java-version: '11'
-        distribution: 'adopt'
+        distribution: 'temurin'
 
     - name: Construir con Maven
       run: mvn clean package -DskipTests
