@@ -74,9 +74,7 @@ public class ActorE2ETest {
         assertEquals("Nombre", headerRow.findElements(By.tagName("th")).get(1).getText());
         assertEquals("Fecha Nacimiento", headerRow.findElements(By.tagName("th")).get(2).getText());
         assertEquals("Pais", headerRow.findElements(By.tagName("th")).get(3).getText());
-
         assertEquals("Fallecimiento", headerRow.findElements(By.tagName("th")).get(4).getText());
-        assertEquals("Editar", headerRow.findElements(By.tagName("th")).get(5).getText());
+        assertEquals("Editar", headerRow.findElements(By.tagName("th")).get(5).getText()); 
     }
-
 }
