@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: "11"
-          distribution: "adopt"
+          distribution: "temurin"
       
       - name: Instalar Chrome y ChromeDriver para pruebas end to end
         run: |

@@ -26,11 +26,14 @@ import java.util.List;
 @Controller
 public class CardController {
 
-
-    private final MovieService movieService;
+    @Autowired
+    MovieService movieService;
+    
     @Autowired 
     ActorService actorService;
-    private final CardService cardService;
+    
+    @Autowired
+    CardService cardService;
 
     public CardController(MovieService movieService, ActorService actorService, CardService cardService) {
         this.movieService = movieService;
