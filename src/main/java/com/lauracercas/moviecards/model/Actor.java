@@ -92,11 +92,15 @@ public class Actor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Actor actor = (Actor) o;
-        return Objects.equals(id, actor.id) && Objects.equals(name, actor.name) && Objects.equals(birthDate, actor.birthDate) && Objects.equals(country, actor.country);
+        return Objects.equals(id, actor.id) && 
+            Objects.equals(name, actor.name) && 
+            Objects.equals(birthDate, actor.birthDate) && 
+            Objects.equals(deadDate, actor.deadDate) && 
+            Objects.equals(country, actor.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, birthDate, country);
+        return Objects.hash(id, name, birthDate, deadDate, country); 
     }
 }

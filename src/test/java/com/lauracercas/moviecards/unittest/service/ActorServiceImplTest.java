@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -63,13 +64,16 @@ class ActorServiceImplTest {
         Actor actor = new Actor();
         actor.setId(1);
         actor.setName("Sample Actor");
+        Date deadDate = new Date();
+        actor.setDeadDate(deadDate);
 
-        when(template.getForObject(anyString(),any())).thenReturn(actor);
+        when(template.getForObject(anyString(), any())).thenReturn(actor);
 
         Actor result = sut.getActorById(1);
 
         assertEquals(1, result.getId());
         assertEquals("Sample Actor", result.getName());
+        assertEquals(deadDate, result.getDeadDate());
     }
 
 }
